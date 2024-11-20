@@ -2,13 +2,15 @@ import datetime
 import tkinter as tk
 from tkinter import *
 from PIL import Image, ImageTk
+from pathlib import Path
 
 class ClockApp:
     def __init__(self, root):
+        self.path_images = Path(__file__).parent / 'Images'
         self.root = root
         self.root.title("Clock")
         self.root.geometry("250x180+600+200")
-        self.time_zones_image = Image.open("/Users/sogsbilby/python/World_Time_Zones_Map.png")
+        self.time_zones_image = Image.open( self.path_images / "World_Time_Zones_Map.png")
         aspect_ratio = self.time_zones_image.size[0] / self.time_zones_image.size[1]
         self.time_zones_image_resized = self.time_zones_image.resize((1500, round(1500 / aspect_ratio)))
         self.time_zones_image_final = ImageTk.PhotoImage(self.time_zones_image_resized)
